@@ -12,6 +12,60 @@
 
 #endregion
 
+PowerShell's execution policy 
+    security feature 
+    controls the conditions under which PowerShell can run scripts.
+    A safety net to prevent the execution of malicious scripts,
+    Not a foolproof security measure (a determined user can bypass it).  
+    Just a first line of defense.   
+
+Here's a breakdown of key aspects:
+
+What it does:
+
+The execution policy 
+    determines whether you can run scripts at all,
+    if so, under what conditions.
+    Makes it harder for untrusted scripts to run accidentally or unknowingly.   
+
+Different Execution Policies:
+
+PowerShell defines several execution policies, each with different levels of restrictiveness:   
+
+  Restricted (Default):  
+      No scripts can be run.  
+      Most restrictive policy.  
+      You can still run individual commands interactively, but not scripts.   
+
+  AllSigned: 
+      All scripts must be signed by a trusted publisher.
+      Most secure policy 
+          but can be inconvenient if you're working with scripts from various sources.   
+
+  RemoteSigned: 
+      Scripts downloaded from the internet 
+          must be signed by a trusted publisher.  
+        Locally created scripts can run without a signature. 
+        This is a common and often recommended balance between security and usability.   
+
+Bypass:  
+    No restrictions. 
+    All scripts can run without a signature.  
+    Use this only if you 
+        completely trust all the scripts you're running
+        understand the security implications.  
+    It's generally not recommended for regular use.
+
+  Unrestricted:  
+      All scripts can run, even unsigned ones.  
+      Similar to Bypass, 
+          but it also warns you before running unsigned scripts.  
+        Less restrictive than Bypass, 
+            but still not recommended for general use unless you have a very specific reason.   
+
+
+
+
 #region running scripts
 
 #get the execution policy of all scopes in the order of precedence
@@ -19,6 +73,7 @@ Get-ExecutionPolicy -List
 
 #change execution policy
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+#Set-ExecutionPolicy <PolicyName> -Scope <Scope> -Force
 
 #unblock a script downloaded from the internet after you have read and understood the code
 Unblock-File -Path .\drive_warn.ps1
