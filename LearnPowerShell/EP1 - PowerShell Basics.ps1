@@ -23,7 +23,7 @@ Get-Help Stop-Process
 #Linux/MacOs Users
 Get-Help Stop-Process -Online
 
-Get-Help Stop-Process -Examples
+#Get-Help Stop-Process -Examples
 #____________________________________________________________
 # Get-Member
 
@@ -37,5 +37,6 @@ Get-Date | Format-List
 #____________________________________________________________
 # Find-Module
 
-Find-Module -Tag Telegram
+#Find-Module -Tag Telegram
+Find-Module -Name "PSReadLine"
 #____________________________________________________________
